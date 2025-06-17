@@ -2,6 +2,7 @@ import discord
 import re
 import requests
 from config import DISCORD_TOKEN, CHANNEL_IDS, NTFY_TOPIC
+from datetime import datetime
 
 default_priority_items = [
     "Nectarine", "Mango", "Grape", "Mushroom", "Pepper", "Cacao",
@@ -10,7 +11,7 @@ default_priority_items = [
 ]
 
 high_priority_items = [
-    "Beanstalk", "Friendship Pot", "Ember Lily", "Hive Fruit", "Master Sprinkler",
+    "Sugar Apple", "Beanstalk", "Friendship Pot", "Ember Lily", "Hive Fruit", "Master Sprinkler",
     "Honey Sprinkler", "Bee Egg", "Bug Egg", "Mythical Egg"
 ]
 
@@ -132,6 +133,16 @@ async def on_ready():
 
 combined_items = default_priority_items + high_priority_items
 
+def replace_discord_timestamps(text):
+    matches = re.findall(r"<t:(\d+):R>", text)
+    for ts in matches:
+        try:
+            dt = datetime.fromtimestamp(int(ts)).strftime("%Y-%m-%d %H:%M:%S")
+            text = text.replace(f"<t:{ts}:R>", f"({dt})")
+        except:
+            continue
+    return text
+
 @client.event
 async def on_message(message):
     global current_stock, previous_stock, items_to_notify
@@ -141,19 +152,25 @@ async def on_message(message):
 
     channel_name = CHANNEL_IDS[message.channel.id]
     any_stock_found = False
+
+    # Clear before processing the whole message
     current_stock.clear()
     items_to_notify.clear()
 
     for embed in message.embeds:
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        
         if channel_name == "Weather":
-            print("\n╭── Weather Alert ──╮")
-            if embed.title:
-                print(f"│ {embed.title}")
-            if embed.description:
-                for line in embed.description.splitlines():
+            weather_title = replace_discord_timestamps(re.sub(r"[*_~`]", "", embed.title or 'Weather Update'))
+            weather_desc = replace_discord_timestamps(embed.description or '')
+            print(f"\n╭── Weather Alert ──╮")
+            if weather_title:
+                print(f"│ {weather_title}")
+            if weather_desc:
+                for line in weather_desc.splitlines():
                     print(f"│ {line.strip()}")
-            print("╰────────────────────╯")
-            weather_msg = f"{embed.title or 'Weather Update'}\n{embed.description or ''}"
+            print("╰────────────────────╯")  # Removed invalid dynamic line length
+            weather_msg = f"{weather_title}\n{weather_desc}"
             send_ntfy_notification("Weather Alert", weather_msg.strip())
             continue
 
@@ -162,7 +179,7 @@ async def on_message(message):
             if not stock_items:
                 continue
             any_stock_found = True
-            print(f"\n╭── {field.name.strip()} ──╮")
+            print(f"\n╭── {field.name.strip()} ──╮| {timestamp}")
             for item_text in stock_items:
                 current_stock.add(item_text)
 
