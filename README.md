@@ -1,6 +1,6 @@
 # Grow A Garden Discord Bot (ntfy.sh based notifications)
 
-This is a Python-based Discord bot designed to monitor stock updates from specific Grow A Garden Discord channels and send real-time notifications via [ntfy.sh](https://ntfy.sh). The bot colorizes terminal output based on item rarity and alerts users only when tracked items appear.
+This is a Python-based Discord bot designed to monitor stock updates from specific Grow A Garden Discord channels and send real-time notifications via [ntfy.sh](https://ntfy.sh).
 
 ---
 
