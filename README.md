@@ -4,6 +4,25 @@ This is a Python-based Discord bot designed to monitor stock updates from specif
 
 ---
 
+## UPDATES: 
+- v1.1.0 (June 17, 2025)
+
+---
+
+### 🆕 What's New in v1.1.0
+
+✅ Added support for Discord timestamp formatting (<t:...:R>) conversion.
+
+✅ Added "Sugar Apple" to high_priority_items.
+
+✅ Enhanced weather alert formatting and cleaned up dynamic box width.
+
+✅ Included time logs for stock events.
+
+✅ Minor improvements in code structure and reliability.
+
+---
+
 ## 📦 Features
 
 - ✅ Tracks specific channels (e.g., stock, egg, honey, weather).
