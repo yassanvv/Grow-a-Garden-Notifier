@@ -98,6 +98,23 @@ High-priority items will use a higher notification level.
 
 ---
 
+## Images
+
+ntfy.sh app (image 1)
+![](https://i.ibb.co/Ngsb6PkK/Screenshot-20250603-180545-ntfy.jpg)
+
+phone notifications (image 2)
+![](https://i.ibb.co/wNFcRwZT/Screenshot-20250604-155333-One-UI-Home.jpg)
+
+running main.py (image 3)
+![](https://i.ibb.co/pBryXsPT/20250612-175531.jpg)
+
+output from main.py (image 4)
+![](https://i.ibb.co/7tXYjBrF/Screenshot-20250612-174444-Termux.jpg)
+
+
+---
+
 ## 🤝 Credits
 
 Built by Jim
