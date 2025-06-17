@@ -98,7 +98,7 @@ High-priority items will use a higher notification level.
 
 ---
 
-## Images
+## Images (from v1.0.0)
 
 ntfy.sh app (image 1)
 ![](https://i.ibb.co/Ngsb6PkK/Screenshot-20250603-180545-ntfy.jpg)
