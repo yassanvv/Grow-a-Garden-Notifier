@@ -1,11 +1,12 @@
-DISCORD_TOKEN = "your bot token id here"
+import os
 
-## stock channel = both seeds and gears
+DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
+
 CHANNEL_IDS = {
-    channelid1: "Stock",
-    channelid2: "Weather",
-    channelid3: "Egg Stock",
-    channelid4: "Honey Stock"
+    1385165827602518026: "Stock",
+    "channelid2": "Weather",
+    "channelid3": "Egg Stock",
+    "channelid4": "Honey Stock"
 }
 
-NTFY_TOPIC = "your topicname here"
+NTFY_TOPIC = "GaG-App"
